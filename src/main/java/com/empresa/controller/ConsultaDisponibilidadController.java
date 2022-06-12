@@ -105,7 +105,7 @@ public class ConsultaDisponibilidadController {
 			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, dataSource);
 			
 			response.setContentType("application/x-pdf");
-		    response.addHeader("Content-disposition", "attachment; filename=ReporteDisponibilidad.pdf");
+		    response.addHeader("Content-disposition", "attachment; filename=ReportGraficoPorDia.pdf");
 
 			OutputStream outStream = response.getOutputStream();
 			JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
@@ -131,7 +131,7 @@ public class ConsultaDisponibilidadController {
 			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, dataSource);
 			
 			response.setContentType("application/x-pdf");
-		    response.addHeader("Content-disposition", "attachment; filename=ReporteDisponibilidad.pdf");
+		    response.addHeader("Content-disposition", "attachment; filename=ReportGraficoPorDiaCiclo.pdf");
 
 			OutputStream outStream = response.getOutputStream();
 			JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
