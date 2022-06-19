@@ -22,6 +22,7 @@ import com.empresa.entidad.ReporteBean;
 import com.empresa.servicio.CicloService;
 import com.empresa.servicio.DisponibilidadService;
 
+import lombok.extern.apachecommons.CommonsLog;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -31,6 +32,7 @@ import net.sf.jasperreports.engine.util.JRLoader;
 
 
 @Controller
+@CommonsLog
 public class ConsultaDisponibilidadController {
 
 	@Autowired
@@ -66,11 +68,16 @@ public class ConsultaDisponibilidadController {
 			JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(lstDisponibilidad);
 			
 			//PASO 2: Obtener el archivo que contiene el diseño del reporte
-			String fileDirectory = request.getServletContext().getRealPath("/WEB-INF/reportes/reporteDisponibilidadUsuarios.jasper");
+			String fileDirectory = request.getServletContext().getRealPath("/WEB-INF/reportes/reporteDisponibilidad.jasper");
+			log.info(">>> " + fileDirectory);
 			FileInputStream stream   = new FileInputStream(new File(fileDirectory));
 			
-			//PASO 3: Parámetros adicionales(NO hay ninguno)
+			//PASO 3: Parámetros adicionales
+			String fileLogo = request.getServletContext().getRealPath("/WEB-INF/img/logo_reporte.jpg");
+			log.info(">>> " + fileLogo);
+			
 			Map<String,Object> params = new HashMap<String,Object>();
+			params.put("RUTA_IMAGEN", fileLogo);
 			
 			//PASO 4: Enviamos dataSource, diseño y parámetros para generar el PDF
 			JasperReport jasperReport = (JasperReport) JRLoader.loadObject(stream);
