@@ -73,7 +73,7 @@ public class ConsultaDisponibilidadController {
 			FileInputStream stream   = new FileInputStream(new File(fileDirectory));
 			
 			//PASO 3: Parámetros adicionales
-			String fileLogo = request.getServletContext().getRealPath("/WEB-INF/img/logo_reporte.jpg");
+			String fileLogo = request.getServletContext().getRealPath("/WEB-INF/img/cherry.jpg");
 			log.info(">>> " + fileLogo);
 			
 			Map<String,Object> params = new HashMap<String,Object>();
